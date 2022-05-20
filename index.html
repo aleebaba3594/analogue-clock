@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=".//clock.css">
+    <title>Document</title>
+</head>
+<!-- <body onload="initClock()"> -->
+
+    
+    <div class="container">
+    <div class="clock"> 
+        <div class="circle" id="sc"
+         style="--clr:#04fc43;"><i></i>
+        </div>
+        <div class="circle circle2" id="mn"
+        style="--clr:#bafc04;"><i></i>
+    </div>
+        <div class="circle circle3" id="hr"
+         style="--clr:#fc0804;"><i></i>
+        </div>
+
+
+        <span style="--i:1;"><b>1</b></span>
+        <span style="--i:2;"><b>2</b></span>
+        <span style="--i:3;"><b>3</b></span>
+        <span style="--i:4;"><b>4</b></span>
+        <span style="--i:5;"><b>5</b></span>
+        <span style="--i:6;"><b>6</b></span>
+        <span style="--i:7;"><b>7</b></span>
+        <span style="--i:8;"><b>8</b></span>
+        <span style="--i:9;"><b>9</b></span>
+        <span style="--i:10;"><b>10</b></span>
+        <span style="--i:11;"><b>11</b></span>
+        <span style="--i:12;"><b>12</b></span>
+     </div>
+
+     <div class="time">
+         <div id="hours" style="--clr:#fc0804;">00</div>
+         <div id="minutes" style="--clr:#bafc04;">00</div>
+         <div id="seconds" style="--clr:#04fc43;">00</div>
+         <div id="ampm"></div>
+     </div>
+
+     <div class="SetTime">
+        <div class="date">
+            <span id="dayname" style="--clr:#fc0804;">Day</span>:
+            <span id="mnth" style="--clr:#bafc04;">Mnth</span>:
+            <span id="year" style="--clr:#04fc43;">Year</span>
+
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    let hr = document.querySelector('#hr');
+    let mn = document.querySelector('#mn');
+    let sc = document.querySelector('#sc'); 
+    let day = new Date()
+    let d = day.getDay();
+        let mnth = day.getMonth();
+        let yr = day.getFullYear();
+        let Day=document.getElementById('dayname');
+        let mnthnew=document.getElementById('mnth');
+        let year=document.getElementById('year');
+     
+        setInterval(()=>{
+            let day = new Date();
+        let hh = day.getHours() * 30;
+        let mm = day.getMinutes() * 6;
+        let ss = day.getSeconds() * 6;
+        
+
+        hr.style.transform = `rotateZ(${hh+(mm/12)}deg)`;
+        mn.style.transform = `rotateZ(${mm}deg)`;
+        sc.style.transform = `rotateZ(${ss}deg)`; 
+
+        // digital clock
+
+        let hours = document.getElementById('hours');
+        let minutes = document.getElementById('minutes');
+        let seconds = document.getElementById('seconds');
+        let ampm = document.getElementById('ampm');
+
+        let h = day.getHours();
+        let m = day.getMinutes();
+        let s = day.getSeconds();
+        
+        let am = h >= 12 ? "PM" : "AM";
+         // convert 24hr clock to 12hr clock
+        if(h > 12){
+            h = h - 12;
+        }
+          // add zero before singal digial number
+        h = (h < 10) ? "0" + h : h
+        m = (m < 10) ? "0" + m : m 
+        s = (s < 10) ? "0" + s : s 
+
+
+        hours.innerHTML = h;
+        minutes.innerHTML = m;
+        seconds.innerHTML = s;
+        ampm.innerHTML = am;
+
+        // day date year          
+
+            switch(mnth){
+       case 0:mnth="january"
+       break;
+       case 1:mnth="Februray"
+       break;
+       case 2:mnth="March"
+       break;
+       case 3:mnth="April"
+       break;
+       case 4:mnth="May"
+       break;
+       case 5:mnth="June"
+       break;
+       case 6:mnth="july"
+       break;
+       case 7:mnth="August"
+       break;
+       case 8:mnth="September"
+       break;
+       case 9:mnth="October"
+       break;
+       case 10:mnth="November"
+       break;
+       case 11:mnth="Decembr"
+   }
+   
+   switch(d){
+       case 0:d="sunday"
+       break;
+       case 1:d="monday "
+       break;
+       case 2:d="tuesday "
+       break;
+       case 3:d="Wed "
+       break;
+       case 4:d="Thursday"
+       break;
+       case 5:d="Firday"
+       break;
+       case 6:d="Saturday"    
+   }
+
+        Day.innerText=`${d}`
+        mnthnew.innerHTML=`${mnth}`
+        year.innerHTML=`${yr}`      
+})
+</script>
+</html>
